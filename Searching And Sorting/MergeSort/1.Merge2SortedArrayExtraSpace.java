@@ -1,53 +1,38 @@
-long merge(long arr[], int l, int m, int r)
-    {
-        int[]res=new int[r-l+1];
-        int ptr1=l;
-        int ptr2=m+1;
+ public void merge(int[] nums1, int n1, int[] nums2, int n2) {
+        int ptr1=0;
+        int ptr2=0;
         int ptr3=0;
-        long inversionCount=0;
-        while(ptr1<=m && ptr2<=r)
+        int[]res=new int[n1+n2];
+        while(ptr1<n1 && ptr2<n2)
         {
-            if(arr[ptr1]<=arr[ptr2])
+            if(nums1[ptr1]<=nums2[ptr2])
             {
-                res[ptr3]=arr[ptr1];
-                ptr1++;
+                res[ptr3]=nums1[ptr1];
                 ptr3++;
+                ptr1++;
             }
             else
             {
-                inversionCount=(m-ptr1+1);
-                res[ptr3]=arr[ptr2];
+                res[ptr3]=nums2[ptr2];
                 ptr2++;
                 ptr3++;
             }
         }
-            while(ptr1<=m)
-            {
-                res[ptr3]=arr[ptr1];
-                ptr1++;
+        while(ptr1<n1)
+        {
+              res[ptr3]=nums1[ptr1];
                 ptr3++;
-            }
-            while(ptr2<=r)
-            {
-              res[ptr3]=arr[ptr2];
+                ptr1++;
+        }
+        while(ptr2<n2)
+        { 
+            res[ptr3]=nums2[ptr2];
                 ptr2++;
-                ptr3++;  
-            }
-            return inversionCount;
-        
+                ptr3++;
+        }
+        for(int i=0;i<res.length;i++)
+        {
+            nums1[i]=res[i];
+        }
         
     }
-
-    long mergeSort(long arr[], int l, int r)
-    { 
-        if(l==r)return 0 ;
-        int mid=(l+r)/2;
-       int left= mergeSort(arr,l,mid);
-        int right=mergeSort(arr,mid+1,r);
-        int curr=merge(arr,l,mid,r);
-        return left+right+curr;
-    }
-long long int inversionCount(long long arr[], long long N)
-{
-    mergeSort(arr,0,N-1);
-}
