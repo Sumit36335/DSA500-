@@ -16,12 +16,11 @@
         {
             long mid=(left)+(right-left)/2;
             k=(mid*(mid+1))/2;
-            if(k==n)return (int)k;
-            else if(n<k)right=mid-1;
-            else   left=mid+1; 
+            if(n>=k)left= mid+1;
+            else   right=mid-1; 
         }
-        return (int)right;
+        return (int)left-1;
     }
     public int arrangeCoins(int n) {
-       return approach2(n);       
+     return approach2(n);   
     }
