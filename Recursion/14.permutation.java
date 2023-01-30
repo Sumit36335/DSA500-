@@ -15,6 +15,10 @@
         }
         
     }
+//2 approach 
+
+
+
     public List<List<Integer>> permute(int[] nums) {
 
         permute(nums,new ArrayList<>());
