@@ -1,20 +1,25 @@
- public List<Integer> rightSideView(TreeNode root) {
-        List<Integer>right = new ArrayList<>();
-        if(root==null)return right;
+public Node connect(Node root) {
+        Node curr=root;
 
-        Queue<TreeNode> q= new ArrayDeque<>();
-        q.add(root);
-
-        while(q.size()>0)
+        while(curr!=null)
         {
-            
-            for(int c=q.size();c>0;c--)
+            Node head = new Node(-1);
+            Node tail = head;
+
+            for(;curr!=null;curr=curr.next)
             {
-                root=q.remove();
-                if(root.left!=null)q.add(root.left);
-                if(root.right!=null)q.add(root.right);
+                if(curr.left!=null)
+                {
+                    tail.next=curr.left;
+                    tail=tail.next;
+                }
+                if(curr.right!=null)
+                {
+                    tail.next=curr.right;
+                    tail=tail.next;
+                }
             }
-            right.add(root.val);
+            curr=head.next;
         }
-        return right;
+        return root;
     }
