@@ -1,0 +1,41 @@
+  TreeNode root;
+
+    public BSTIterator(TreeNode curr) {
+        root = curr;
+    }
+
+    public TreeNode floor(TreeNode root) {
+        TreeNode ans = root.left;
+        while (ans.right != null && ans.right != root)
+            ans = ans.right;
+            
+        return ans;
+    }
+
+    public int next() {
+        int ans = -1;
+        while (root != null) {
+            if (root.left == null) {
+                ans = root.val;
+                root = root.right;
+                return ans;
+            }
+            TreeNode floor = floor(root);
+            if (floor.right == null) {
+                floor.right = root; // thread creation
+                root = root.left;
+            } else {
+                floor.right = null; // thread deletion
+                ans = root.val;
+                root = root.right;
+                break;
+            }
+        }
+        return ans;
+    }
+
+    public boolean hasNext() {
+        if (root == null)
+            return false;
+        return true;
+    }
