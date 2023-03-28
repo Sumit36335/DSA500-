@@ -16,3 +16,4 @@ public static ArrayList<Integer> duplicates(int[] nums, int n) {
         if(repeat.size()==0)repeat.add(-1);
         return repeat;
     }
+.
